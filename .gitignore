@@ -1,0 +1,13 @@
+/src/main/resources/
+/target/
+.DS_Store
+/src/main/webapp/assets
+/src/main/webapp/music
+/src/main/webapp/index.html
+/src/main/webapp/upload
+
+# ignore eclipse files
+# .project
+# .classpath
+# .settings
+# .tern-project
