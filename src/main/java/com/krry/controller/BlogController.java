@@ -86,6 +86,21 @@ public class BlogController {
 	}
 	
 	/**
+	 * 获取爱情博客、博客总数
+	 * @param params
+	 * @return
+	 */
+	@ResponseBody
+	@RequestMapping("/getLoveBlog")
+	public ResponseVal getLoveBlog(Params params){
+		
+		ResponseVal resData = blogService.getLoveBlog(params);
+		
+		return resData;
+	}
+	
+	
+	/**
 	 * 修改博客，不改变 updateTime
 	 * @param blog
 	 * @return

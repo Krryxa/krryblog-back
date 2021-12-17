@@ -19,7 +19,8 @@
 		b.updateTime,
 		b.status,
 		b.isDelete,
-		b.isTop
+		b.isTop,
+		b.isLove
 	</sql>
 	
 	<!-- 根据用户名查询 -->
@@ -96,6 +97,8 @@
 			b.status = 1
 		and
 			b.isDelete = 0
+		and
+			b.isLove = 0
 		and(
 			b.title LIKE '%${keyword}%'
 			or b.description like '%${keyword}%'
@@ -120,6 +123,8 @@
 			status = 1
 		and
 			isDelete = 0
+		and
+			isLove = 0
 		and(
 			b.title LIKE '%${keyword}%'
 			or b.description like '%${keyword}%'

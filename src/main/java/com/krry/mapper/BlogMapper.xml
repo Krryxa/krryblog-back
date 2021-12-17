@@ -19,7 +19,8 @@
 		b.updateTime,
 		b.status,
 		b.isDelete,
-		b.isTop
+		b.isTop,
+		b.isLove
 	</sql>
 	
 	<!-- 查询已发布的博客 -->
@@ -44,12 +45,14 @@
 			b.status = 1
 		and
 			b.isDelete = 0
+		and
+			b.isLove = 0
 		order by
 			b.isTop desc,
  			b.id desc
 	</select>
 	
-	<!-- 查询所有已发布的博客总数 -->
+	<!-- 查询所有已发布的博客总数，用于编辑时获取最大博客数量 id -->
 	<select id="getBlogCount" resultType="int">
 		select
 			count(*)
@@ -129,6 +132,8 @@
 			b.status = 1
 		and
 			b.isDelete = 0
+		and
+			b.isLove = 0
 		order by
  			b.id desc
 	</select>
@@ -141,6 +146,49 @@
 			blog
 		where
 			classifyId = #{id}
+		and
+			status = 1
+		and
+			isDelete = 0
+		and
+			isLove = 0
+	</select>
+	
+	<!-- 查询爱情博客 -->
+	<select id="getLoveBlog" resultType="Blog">
+		select
+			b.id,
+			u.name as userName,
+			c.name as classify,
+			<include refid="blog_column"></include>
+		from
+			blog b
+		left join
+			user u
+		on
+			b.userId = u.id
+		left join
+			classify c
+		on
+			b.classifyId = c.id
+		where
+			b.isLove = 1
+		and
+			b.status = 1
+		and
+			b.isDelete = 0
+		order by
+ 			b.id desc
+	</select>
+	
+	<!-- 查询已发布的爱情博客总数 -->
+	<select id="getLoveBlogCount" resultType="int">
+		select
+			count(*)
+		from
+			blog
+		where
+			isLove = 1
 		and
 			status = 1
 		and

@@ -213,6 +213,58 @@ public class BlogService implements IBlogService{
 	}
 	
 	/**
+	 * 获取爱情博客、博客总数
+	 * 时间戳截掉时分秒
+	 * @param params
+	 * @return
+	 */
+	public ResponseVal getLoveBlog(Params params) {
+		
+		// 分页
+		int pageNo = params.getPageNo();
+		int pageSize = params.getPageSize();
+		
+		PageHelper.startPage(pageNo, pageSize);
+		
+		List<Blog> blogList = blogMapper.getLoveBlog();
+		int blogLen = blogMapper.getLoveBlogCount();
+		String categoryName = "双 K 之恋";
+		
+		HashMap<String, Object> resData = new HashMap<>();
+		
+		ResponseVal res = new ResponseVal();
+		
+		int len = blogList.size();
+		
+		if (len > 0) {
+			for (int i = 0; i < len; i++) {
+				Blog curBlog = blogList.get(i);
+				String createTime = curBlog.getCreateTime();
+				String updateTime = curBlog.getUpdateTime();
+				// 去掉 2018-09-04 13:24:05 的时分秒
+				curBlog.setCreateTime(createTime.split(" ")[0]);
+				curBlog.setUpdateTime(updateTime.split(" ")[0]);
+			}
+			res.setCode(200);
+		} else {
+			// 某分类没有发表过博客的情况，或者分页博客数量为空
+			res.setCode(404);
+		}
+		// 用PageInfo对结果进行包装
+        PageInfo<Blog> pageInfo = new PageInfo<Blog>(blogList);
+        List<Blog> pageBlog = pageInfo.getList();
+        
+		resData.put("data", pageBlog);
+		resData.put("blogLen", blogLen);
+		resData.put("name", categoryName);
+		
+		res.setResult(resData);
+		
+		return res;
+	}
+	
+	
+	/**
 	 * 修改博客，不改变 updateTime
 	 * @param blog
 	 * @return

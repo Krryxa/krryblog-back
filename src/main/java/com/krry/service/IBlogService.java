@@ -36,6 +36,12 @@ public interface IBlogService {
 	public ResponseVal getBlogByClassifyId(int id, Params params);
 	
 	/**
+	 * 获取爱情博客、博客总数
+	 * @return
+	 */
+	public ResponseVal getLoveBlog(Params params);
+	
+	/**
 	 * 修改博客，不改变 updateTime（增加评论数）
 	 * @param blog
 	 */

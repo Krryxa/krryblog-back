@@ -57,6 +57,18 @@ public interface BlogMapper {
 	public int getBlogClassifyCount(int id);
 	
 	/**
+	 * 查询已发布的爱情博客
+	 * @return
+	 */
+	public List<Blog> getLoveBlog();
+	
+	/**
+	 * 查询已发布的爱情博客总数
+	 * @return
+	 */
+	public int getLoveBlogCount();
+	
+	/**
 	 * 查询分类博客的名称
 	 * @return
 	 */

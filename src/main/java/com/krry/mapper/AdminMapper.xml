@@ -19,7 +19,8 @@
 		b.updateTime,
 		b.status,
 		b.isDelete,
-		b.isTop
+		b.isTop,
+		b.isLove
 	</sql>
 	
 	<!-- 根据用户 id 查询 -->
@@ -144,7 +145,8 @@
 			updateTime,
 			status,
 			isDelete,
-			isTop
+			isTop,
+			isLove
 	    )
 	    values(
 	    	#{userId},
@@ -162,7 +164,8 @@
 			#{updateTime},
 			#{status},
 			#{isDelete},
-			#{isTop}
+			#{isTop},
+			#{isLove}
 	    )
 	</insert>
 	
@@ -197,6 +200,7 @@
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(status)">status=#{status},</if>
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isDelete)">isDelete=#{isDelete},</if>
 			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isTop)">isTop=#{isTop},</if>
+			<if test="@com.krry.util.TmStringUtils@isNotEmpty(isLove)">isLove=#{isLove},</if>
 		</trim>
 		where
 			id = #{id}

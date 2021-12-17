@@ -21,6 +21,7 @@ public class Blog {
 	private Integer status;
 	private Integer isDelete;
 	private Integer isTop;
+	private Integer isLove;
 	
 	public Integer getId() {
 		return id;
@@ -135,6 +136,12 @@ public class Blog {
 	}
 	public void setIsTop(Integer isTop) {
 		this.isTop = isTop;
+	}
+	public Integer getIsLove() {
+		return isLove;
+	}
+	public void setIsLove(Integer isLove) {
+		this.isLove = isLove;
 	}
 	
 	
