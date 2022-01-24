@@ -1,4 +1,4 @@
-/src/main/resources/
+/src/main/resources/jdbc.properties
 /target/
 .DS_Store
 /src/main/webapp/assets
